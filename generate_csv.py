@@ -6,7 +6,7 @@ from time import sleep
 ### USER PARAMETERS ###
 jpl_email = "horizons@ssd.jpl.nasa.gov"
 username = "astro.cs189@gmail.com"
-password = ''  # can also hardcode the pwd
+password = 'i_like_stars'  # can also hardcode the pwd
 
 bodies = "'1'\n'2'\n'4'\n'5'\n'6'\n'7'\n'8'\n'10'\n'301'"
 site_coord = "'75.79,23.17,0.5'"
@@ -40,7 +40,7 @@ R_T_S_ONLY= 'NO'
 REF_SYSTEM= 'J2000'
 CSV_FORMAT= 'YES'
 OBJ_DATA= 'YES'
-QUANTITIES= '1,2,4,9,10,13,14,19,20,21,24,29,32'
+QUANTITIES= '1,2,4,9,10,31,32'
 !$$EOF
 """
 
@@ -68,7 +68,7 @@ except Exception as e:
     print(e)
 
 # parse the inbox and read emails
-limiter = '*' * 290
+limiter = compile(r'[*]{5,}')
 reg = compile(r'\A\d+')
 typ, data = server.search(None, '(FROM "Horizons Ephemeris System")')
 assert len(data[0].split()) != 0, "no ephemeris emails found"
@@ -83,23 +83,28 @@ for num in data[0].split():
         continue
 
     typ, data = server.fetch(num, '(UID BODY[TEXT])')
-    text = data[0][1].decode().splitlines()[:-1]
+    text = data[0][1].decode().splitlines()[3:-1]
     f_name = ''
-    while text[0] != limiter:
-        if text[0].startswith('Target body name:'):
-            # first line: {Horizons Name} {(id #)}]
-            f_name = reg.sub('', text[0][18:text[0].find('{')].strip())
-            f_name = f_name.split()[0].lower()
+    top = 6
+    while top:
+        while limiter.fullmatch(text[0]) is None:
+            if top == 3 and text[0].startswith('Target body name:'):
+                # first line: {Horizons Name} {(id #)}]
+                f_name = reg.sub('', text[0][18:text[0].find('{')].strip())
+                f_name = f_name.split()[0].lower()
+            text = text[1:]
         text = text[1:]
+        top -= 1
+
     if subject.endswith('(1/2)'):
         data = server.search(None, f'(SUBJECT "{subject[:-5]}(2/2)")')[1]
         typ, data = server.fetch(data[0], '(UID BODY[TEXT])')
         additional = data[0][1].decode().splitlines()[2:-1]
         text += additional
-    while text[-1] != limiter:
+
+    while limiter.fullmatch(text[-1]) is None:
         text = text[:-1]
-    # print(text)
-    text = [text[1]] + text[4:-2]
+    text = [text[0]] + text[3:-2]
 
     with open(f'{f_name}.csv', 'w') as f:
         for x in text:
