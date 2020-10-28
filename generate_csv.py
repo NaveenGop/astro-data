@@ -6,7 +6,7 @@ from time import sleep
 ### USER PARAMETERS ###
 jpl_email = "horizons@ssd.jpl.nasa.gov"
 username = "astro.cs189@gmail.com"
-password = 'i_like_stars'  # can also hardcode the pwd
+password = ''  # can also hardcode the pwd
 
 bodies = "'1'\n'2'\n'4'\n'5'\n'6'\n'7'\n'8'\n'10'\n'301'"
 site_coord = "'75.79,23.17,0.5'"
