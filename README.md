@@ -2,6 +2,9 @@
 
 This repository stores an ephemerides dataset relative to an observer on Earth of the planets, the Sun, and the Moon, calculated through [NASA Horizons JPL](https://ssd.jpl.nasa.gov/). By procedurally sending an email request to the Horizons system, `generate_csv.py` allows easy customizability with regards to observer location, time frame, and sample frequency. `coordinates.py` cleans the dataset as well as provides a new change of coordinates, what we have determined to be the historical measurements of Indian astronomers during the period 900CE-1300CE. This new coordinate data is in the columns `RA_ECL_ANC,DEC_ECL_ANC`.
 
+## Contributors
+
+Alan Zhou, Anish Nag, Jonathan Wang, Naveen Gopalan
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pandas.
