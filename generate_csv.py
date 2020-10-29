@@ -29,7 +29,7 @@ STOP_TIME= {stop_time}
 STEP_SIZE= {step_size}
 CAL_FORMAT= 'CAL'
 TIME_DIGITS= 'MINUTES'
-ANG_FORMAT= 'HMS'
+ANG_FORMAT= 'DEG'
 OUT_UNITS= 'KM-S'
 RANGE_UNITS= 'AU'
 APPARENT= 'AIRLESS'
@@ -39,8 +39,9 @@ EXTRA_PREC= 'NO'
 R_T_S_ONLY= 'NO'
 REF_SYSTEM= 'J2000'
 CSV_FORMAT= 'YES'
-OBJ_DATA= 'YES'
-QUANTITIES= '1,2,4,9,10,31,32'
+OBJ_DATA= 'NO'
+TIME_ZONE = '+05:30'
+QUANTITIES= '1,2,4,31,34'
 !$$EOF
 """
 
@@ -83,9 +84,9 @@ for num in data[0].split():
         continue
 
     typ, data = server.fetch(num, '(UID BODY[TEXT])')
-    text = data[0][1].decode().splitlines()[3:-1]
+    text = data[0][1].decode().splitlines()[2:-1]
     f_name = ''
-    top = 6
+    top = 5
     while top:
         while limiter.fullmatch(text[0]) is None:
             if top == 3 and text[0].startswith('Target body name:'):
