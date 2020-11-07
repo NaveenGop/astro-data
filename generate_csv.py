@@ -5,7 +5,7 @@ from time import sleep
 
 ### USER PARAMETERS ###
 jpl_email = "horizons@ssd.jpl.nasa.gov"
-username = "astro.cs189@gmail.com"
+gmail = "astro.cs189@gmail.com"
 password = ''  # can also hardcode the pwd
 
 bodies = "'1'\n'2'\n'4'\n'5'\n'6'\n'7'\n'8'\n'10'\n'301'"
@@ -50,8 +50,8 @@ smtp_server = "smtp.gmail.com"
 smtp_ssl_port = 465
 try:
     server = SMTP_SSL(smtp_server, smtp_ssl_port)
-    server.login(username, password)
-    server.sendmail(username, jpl_email, message)
+    server.login(gmail, password)
+    server.sendmail(gmail, jpl_email, message)
 except Exception as e:
     print(e)
 finally:
@@ -63,7 +63,7 @@ imap_ssl_host = 'imap.gmail.com'
 imap_ssl_port = 993
 try:
     server = IMAP4_SSL(imap_ssl_host, imap_ssl_port)
-    server.login(username, password)
+    server.login(gmail, password)
     server.select('INBOX')
 except Exception as e:
     print(e)
