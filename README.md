@@ -1,10 +1,25 @@
 # Comparison of Ancient Astronomical Models (Final Project)
 
-To see a comparison of Greek and Indian astronomical models, check out `final.ipynb`. For basic data exploration, check out `project.ipynb`, which allows for interactive scatter plots and frequency analysis.
+For our late project, we took inspiration from the ancient Indian pulsating epicycle model of planetary motion and created machine learning models that predict the orbits of the Sun, Moon, and five visible planets. We also include comparison with the Greek non-pulsating epicycle model of planetary motion.
+
+To see a comparison of Greek and Indian astronomical models, check out `late project s/final.ipynb`. For basic data exploration, check out `late project s/project.ipynb`, which allows for interactive scatter plots and frequency analysis. All plots and figures can be found in the `late project s/results` directory, and our write-up is found in the `late project s` directory.
+
+An example of our models' prediction of Jupiter's orbit:
+<p float="left">
+  <img src="/late project s/results/model plots/jupiter_truth.png" width="230" />
+  <img src="/late project s/results/model plots/jupiter_greek.png" width="230" />
+  <img src="/late project s/results/model plots/jupiter_static.png" width="230" />
+  <img src="/late project s/results/model plots/jupiter_pulse.png" width="230" />
+</p>
+
+A comparison of our models' performance on the all the astronomical bodies we learned on. Note how our pulsating models perform better for all bodies except Mercury and Venus:
+<p float="left">
+  <img src="/late project s/results/comparison.png" width="500" />
+</p>
 
 # Ancient Indian Ephemerides Data (Early Project)
 
-This repository stores an ephemerides dataset relative to an observer on Earth of the planets, the Sun, and the Moon, calculated through [NASA Horizons JPL](https://ssd.jpl.nasa.gov/). By procedurally sending an email request to the Horizons system, `generate_csv.py` allows easy customizability with regards to observer location, time frame, and sample frequency. `coordinates.py` cleans the dataset as well as provides a new change of coordinates, what we have determined to be the historical measurements of Indian astronomers during the period 900CE-1300CE. This new coordinate data is in the columns `RA_ECL_ANC, DEC_ECL_ANC`.
+For our early project, we created an ephemerides dataset relative to an observer on Earth of the planets, the Sun, and the Moon, calculated through [NASA Horizons JPL](https://ssd.jpl.nasa.gov/). By procedurally sending an email request to the Horizons system, `generate_csv.py` allows easy customizability with regards to observer location, time frame, and sample frequency. `coordinates.py` cleans the dataset as well as provides a new change of coordinates, what we have determined to be the historical measurements of Indian astronomers during the period 900CE-1300CE. This new coordinate data is in the columns `RA_ECL_ANC, DEC_ECL_ANC`.
 
 ## Contributors
 
@@ -35,7 +50,7 @@ step_size = "'2 d'"
 These are the basic user parameters as noted in `generate_csv.py`. For a list of more solar system bodies and general formatting, please visit [Horizons JPL](https://ssd.jpl.nasa.gov/). To generate the csv files, simply execute `python3 generate_csv.py` in the terminal after filling out the relevant user parameters (gmail, password, bodies, etc. All of the variables listed in the code block above). Note that only the gmail and password need to be changed to create a valid ancient Indian ephemerides dataset; however, feel free to change site_coord (observer location), start time, stop time, and others. Make sure that the inbox of the email being used does not contain any emails for NASA Horizons JPL before running the script, so as to not process extra emails. Also, ensure that the email is a gmail with "Less secure app access" on.
 
 <p align="center">
-  <img src="https://github.com/NaveenGop/astro-data/blob/main/example_params.jpg" align="middle" width="350">
+  <img src="https://github.com/NaveenGop/astro-data/blob/main/early project s/example_params.jpg" align="middle" width="350">
   <br>Figure 1. Example Parameters
 </p>
 
@@ -72,7 +87,7 @@ QUANTITIES= '1,2,4,31,34'
 To process the data in terms of removing excess columns and adding the Indian astronomer measurements, execute `python3 coordinates.py` in the directory with all the .csv ephemerides files.
 
 <p align="center">
-  <img src="https://github.com/NaveenGop/astro-data/blob/main/example_dir.png" align="middle" >
+  <img src="https://github.com/NaveenGop/astro-data/blob/main/early project s/example_dir.png" align="middle" >
   <br>Figure 2. Example Directory
 </p>
 
